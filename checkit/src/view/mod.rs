@@ -1,29 +1,27 @@
-use iced::{Application, executor};
-use iced::widget::{button, column, text, Column};
+use iced::executor;
+use iced::{Application, Command, Element, Settings, Theme};
 
-pub(crate) struct AppInit {
-}
+pub(crate) struct AppInit;
 
 impl Application for AppInit {
     type Executor = executor::Default;
-    type Message = ();
     type Flags = ();
+    type Message = ();
+    type Theme = Theme;
 
-    fn new(_flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
-        (AppInit {}, iced::Command::none())
+    fn new(_flags: ()) -> (AppInit, Command<Self::Message>) {
+        (AppInit, Command::none())
     }
 
     fn title(&self) -> String {
-        String::from("CheckIT")
+        String::from("CheckIt")
     }
 
-    fn update(&mut self, message: Self::Message) -> iced::Command<Self::Message> {
-        iced::Command::none()
+    fn update(&mut self, _message: Self::Message) -> Command<Self::Message> {
+        Command::none()
     }
 
-    fn view(&self) -> iced::Element<'_, Self::Message, iced::Renderer<Self::Theme>> {
-        todo!()
+    fn view(&self) -> Element<Self::Message> {
+        "Hello, world!".into()
     }
-
-    type Theme = iced::Theme;
 }
