@@ -22,22 +22,41 @@ impl InitView {
         });
 
     }
+    fn render_date(&self, ui: &mut eframe::egui::Ui) {
+        let date = "Error loading date";
+        ui.vertical_centered(|ui|{
+            ui.add_space(12.0);
+            ui.colored_label(egui::Color32::from_rgb(255, 255, 255), date);
+        });
+
+    }
 }
 
 impl eframe::App for InitView {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         //background color
-        let frame = egui::containers::Frame {
+        let background_color = egui::containers::Frame {
             fill: egui::Color32::from_rgb(241, 233, 218),
             ..Default::default()
         };
+        let frame = egui::containers::Frame {
+            fill: egui::Color32::from_rgba_premultiplied(0, 0, 0, 0),
+            ..Default::default()
+        };
 
-        //main window
+        //background layer
+        egui::CentralPanel::default()
+        .frame(background_color)
+        .show(ctx, |ui| {
+            //load background
+            self.render_date_backdrop(ui);
+        });
+        //layer 1
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
             //load UI elements
-            self.render_date_backdrop(ui);
+            self.render_date(ui);
         });
     }
 }
