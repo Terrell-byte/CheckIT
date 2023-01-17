@@ -1,4 +1,4 @@
-use eframe::egui::{self, Ui};
+use eframe::egui::{self};
 use egui_extras::RetainedImage;
 
 struct InitView {
@@ -16,7 +16,11 @@ impl InitView {
         Self { date_backdrop }
     }
     fn render_date_backdrop(&self, ui: &mut eframe::egui::Ui) {
-        self.date_backdrop.show(ui);
+        ui.vertical_centered(|ui|{
+            ui.add_space(12.0);
+            self.date_backdrop.show_size(ui, egui::vec2(351.0, 199.0));
+        });
+
     }
 }
 
@@ -33,7 +37,7 @@ impl eframe::App for InitView {
         .frame(frame)
         .show(ctx, |ui| {
             //load image
-            self.render_date_backdrop(ui)
+            self.render_date_backdrop(ui);
         });
     }
 }
