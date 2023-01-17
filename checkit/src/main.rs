@@ -36,7 +36,7 @@ impl eframe::App for InitView {
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
-            //load image
+            //load UI elements
             self.render_date_backdrop(ui);
         });
     }
