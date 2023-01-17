@@ -1,31 +1,39 @@
-use eframe::egui;
+use eframe::egui::{self, Ui};
 use egui_extras::RetainedImage;
 
-struct InitView;
+struct InitView {
+    date_backdrop: RetainedImage,
+}
 
-impl eframe::App for InitView {
-    
-    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-        
-        //load image from file so it can be used
+impl InitView {
+    fn new() -> Self {
+
+        //load images
         let date_backdrop = RetainedImage::from_image_bytes(
             "date_backdrop.png",
             include_bytes!("date_backdrop.png"),
         ).unwrap();
-        
+        Self { date_backdrop }
+    }
+    fn render_date_backdrop(&self, ui: &mut eframe::egui::Ui) {
+        self.date_backdrop.show(ui);
+    }
+}
+
+impl eframe::App for InitView {
+    fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         //background color
         let frame = egui::containers::Frame {
             fill: egui::Color32::from_rgb(241, 233, 218),
             ..Default::default()
         };
-        
+
         //main window
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
             //load image
-            date_backdrop.show(ui);
-        
+            self.render_date_backdrop(ui)
         });
     }
 }
@@ -41,6 +49,6 @@ fn main() {
     eframe::run_native(
         "CheckIt",
         options,
-        Box::new(|_cc| Box::new(InitView)),
+        Box::new(|_cc| Box::new(InitView::new())),
     )
 }
