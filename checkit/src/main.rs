@@ -4,8 +4,6 @@ use egui_extras::RetainedImage;
 struct InitView;
 
 impl eframe::App for InitView {
-
-
     
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         
