@@ -7,7 +7,6 @@ struct InitView {
 
 impl InitView {
     fn new() -> Self {
-
         //load images
         let date_backdrop = RetainedImage::from_image_bytes(
             "date_backdrop.png",
@@ -20,7 +19,6 @@ impl InitView {
             ui.add_space(12.0);
             self.date_backdrop.show_size(ui, egui::vec2(351.0, 199.0));
         });
-
     }
     fn render_date(&self, ui: &mut eframe::egui::Ui) {
         let date = "Error loading date";
@@ -28,7 +26,6 @@ impl InitView {
             ui.add_space(12.0);
             ui.colored_label(egui::Color32::from_rgb(255, 255, 255), date);
         });
-
     }
 }
 
@@ -43,7 +40,6 @@ impl eframe::App for InitView {
             fill: egui::Color32::from_rgba_premultiplied(0, 0, 0, 0),
             ..Default::default()
         };
-
         //background layer
         egui::CentralPanel::default()
         .frame(background_color)
@@ -64,7 +60,6 @@ impl eframe::App for InitView {
 fn main() {
     let options = eframe::NativeOptions {
         initial_window_size: Some(egui::vec2(386.0, 636.0)),
-        always_on_top: true,
         resizable: false,
         ..Default::default()
     };
