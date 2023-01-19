@@ -1,9 +1,10 @@
 use eframe::egui::{self};
 use egui_extras::RetainedImage;
-use chrono::{Datelike, Local};
+use chrono::{Datelike, Local, DateTime, Duration};
 
 struct InitView {
     date_backdrop: RetainedImage,
+    date: DateTime<Local>,
 }
 
 impl InitView {
@@ -13,18 +14,17 @@ impl InitView {
             "date_backdrop.png",
             include_bytes!("date_backdrop.png"),
         ).unwrap();
-        Self { date_backdrop }
+        let date = Local::now();
+        Self { date_backdrop, date,}
     }
 
-    fn set_today_string() -> String {
-        let now = Local::now();
+    fn format_date_string(&self) -> String {
 
-        if now.year() == Local::now().year() && now.month() == Local::now().month() && now.day() == Local::now().day() {
+        if self.date.year() == Local::now().year() && self.date.month() == Local::now().month() && self.date.day() == Local::now().day() {
             return "Today".to_string();
         }
-    
 
-        let day_of_week = match now.weekday() {
+        let day_of_week = match self.date.weekday() {
             chrono::Weekday::Mon => "Monday",
             chrono::Weekday::Tue => "Tuesday",
             chrono::Weekday::Wed => "Wednesday",
@@ -34,7 +34,7 @@ impl InitView {
             chrono::Weekday::Sun => "Sunday",
         };
     
-        let month = match now.month() {
+        let month = match self.date.month() {
             1 => "Jan",
             2 => "Feb",
             3 => "Mar",
@@ -50,7 +50,7 @@ impl InitView {
             _ => "",
         };
     
-        format!("{} {}, {}", day_of_week, now.day(), month)
+        format!("{} {}, {}", day_of_week, self.date.day(), month)
     }
 
 
@@ -61,15 +61,20 @@ impl InitView {
         });
     }
 
-    fn render_date(&self, ui: &mut eframe::egui::Ui) {
-        let date = Self::set_today_string();
+    fn render_date(&mut self, ui: &mut eframe::egui::Ui) {
+        let date = self.format_date_string();
         ui.vertical_centered(|ui|{
             ui.add_space(30.0);
             ui.horizontal(|ui|{
                 ui.add_space(50.0);
                 ui.colored_label(egui::Color32::from_rgb(255, 255, 255), date);
                 ui.add_space(30.0);
-               
+                if ui.button("prev").clicked() {
+                    self.date = self.date - Duration::days(1);
+                }
+                if ui.button("next").clicked() {
+                    self.date = self.date + Duration::days(1);
+                }
             });
         });
 
