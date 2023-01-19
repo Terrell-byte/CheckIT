@@ -2,6 +2,8 @@ use eframe::egui::{self};
 use egui_extras::RetainedImage;
 use chrono::{Datelike, Local, DateTime, Duration};
 
+
+//move all of Init view into a separate file
 struct InitView {
     date_backdrop: RetainedImage,
     date: DateTime<Local>,
@@ -18,6 +20,7 @@ impl InitView {
         Self { date_backdrop, date,}
     }
 
+    //make this into a serparate class
     fn format_date_string(&self) -> String {
 
         if self.date.year() == Local::now().year() && self.date.month() == Local::now().month() && self.date.day() == Local::now().day() {
