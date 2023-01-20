@@ -10,6 +10,7 @@ pub fn render_date(view: &mut InitView, ui: &mut eframe::egui::Ui) {
         ui.horizontal(|ui|{
             ui.add_space(50.0);
             ui.colored_label(egui::Color32::from_rgb(255, 255, 255), date);
+
         });
     });
 
