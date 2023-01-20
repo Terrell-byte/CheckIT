@@ -3,26 +3,26 @@ use egui_extras::RetainedImage;
 use chrono::{Local, DateTime};
 use crate::date::{render_date, render_date_backdrop, render_date_arrow};
 use crate::font_loader::configure_fonts;
-pub struct InitView {
+pub struct View {
     pub date_backdrop: RetainedImage,
     pub arrow_left_icon: RetainedImage,
     pub arrow_right_icon: RetainedImage,
     pub date: DateTime<Local>,
 }
 
-impl InitView {
+impl View {
     pub fn new() -> Self {
         //load images
         let date_backdrop = RetainedImage::from_image_bytes("assets/date_backdrop.png", include_bytes!("assets/date_backdrop.png")).unwrap();
         let arrow_left_icon = RetainedImage::from_image_bytes("assets/arrow_left.png", include_bytes!("assets/arrow_left.png")).unwrap();
         let arrow_right_icon = RetainedImage::from_image_bytes("assets/arrow_right.png", include_bytes!("assets/arrow_right.png")).unwrap();
-
         let date = Local::now();
+        
         Self { date_backdrop, date, arrow_left_icon, arrow_right_icon}
     }
 }
-impl eframe::App for InitView {
-    fn update(mut self: &mut InitView, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+impl eframe::App for View {
+    fn update(mut self: &mut View, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         //load fonts
         configure_fonts(&mut self,ctx);
 

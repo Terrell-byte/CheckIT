@@ -1,7 +1,7 @@
 use eframe::egui::{self};
-use init_view::InitView;
+use view::View;
 
-mod init_view;
+mod view;
 mod date;
 mod font_loader;
 mod reformat_dates;
@@ -12,11 +12,11 @@ fn main() {
         resizable: false,
         ..Default::default()
     };
-    let _view = init_view::InitView::new();
+    let _view = view::View::new();
         eframe::run_native(
         "CheckIt",
         options,
-        Box::new(|_cc| Box::new(InitView::new())),
+        Box::new(|_cc| Box::new(View::new())),
     )
     
 }

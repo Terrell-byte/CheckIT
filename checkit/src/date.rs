@@ -1,9 +1,9 @@
 pub(crate) use chrono::Duration;
 use eframe::egui::{self};
-use crate::init_view::InitView;
+use crate::view::View;
 use crate::reformat_dates::format_date_string;
 
-pub fn render_date(view: &mut InitView, ui: &mut eframe::egui::Ui) {
+pub fn render_date(view: &mut View, ui: &mut eframe::egui::Ui) {
     let date = format_date_string(view);
     ui.vertical_centered(|ui|{
         ui.add_space(50.0);
@@ -14,14 +14,14 @@ pub fn render_date(view: &mut InitView, ui: &mut eframe::egui::Ui) {
     });
 }
 
-pub fn render_date_backdrop(view: &InitView, ui: &mut eframe::egui::Ui) {
+pub fn render_date_backdrop(view: &View, ui: &mut eframe::egui::Ui) {
     ui.vertical_centered(|ui|{
         ui.add_space(12.0);
         view.date_backdrop.show_size(ui, egui::vec2(351.0, 199.0));
     });
 }
 
-pub fn render_date_arrow(view: &mut InitView, ui: &mut eframe::egui::Ui, ctx: &egui::Context) {
+pub fn render_date_arrow(view: &mut View, ui: &mut eframe::egui::Ui, ctx: &egui::Context) {
     let prev = egui::ImageButton::new(view.arrow_left_icon.texture_id(ctx), egui::vec2(7.0, 12.0));
     let next = egui::ImageButton::new(view.arrow_right_icon.texture_id(ctx), egui::vec2(7.0, 12.0));
 

@@ -1,8 +1,8 @@
 use chrono::{Datelike, Local};
-use crate::{init_view::InitView};
+use crate::{view::View};
 
 
-pub fn format_date_string(_view: &mut InitView) -> String {
+pub fn format_date_string(_view: &mut View) -> String {
 
     if _view.date.year() == Local::now().year() && _view.date.month() == Local::now().month() && _view.date.day() == Local::now().day() {
         return "Today".to_string();
