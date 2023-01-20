@@ -1,8 +1,8 @@
-use eframe::{egui::{self, FontDefinitions, FontData}, epaint::FontFamily};
+use eframe::{egui::{self}};
 use egui_extras::RetainedImage;
-use chrono::{Datelike, Local, DateTime};
+use chrono::{Local, DateTime};
 use crate::date::{render_date, render_date_backdrop, render_date_arrow};
-
+use crate::font_loader::configure_fonts;
 pub struct InitView {
     pub date_backdrop: RetainedImage,
     pub arrow_left_icon: RetainedImage,
@@ -20,69 +20,11 @@ impl InitView {
         let date = Local::now();
         Self { date_backdrop, date, arrow_left_icon, arrow_right_icon}
     }
-
-    pub fn configure_fonts(&self,ctx: &egui::Context){
- 
-        let mut fonts = FontDefinitions::default();
-
-        // Install my own font (maybe supporting non-latin characters):
-        fonts.font_data.insert("JosefinSans".to_owned(),
-           FontData::from_static(include_bytes!("assets/fonts/JosefinSans-Regular.ttf"))); // .ttf and .otf supported
-        
-        // Put my font first (highest priority):
-        fonts.families.get_mut(&FontFamily::Proportional).unwrap()
-            .insert(0, "JosefinSans".to_owned());
-        
-        // Put my font as last fallback for monospace:
-        fonts.families.get_mut(&FontFamily::Monospace).unwrap()
-            .push("JosefinSans".to_owned());
-        
-        ctx.set_fonts(fonts);
-    }
-
-
-
-    pub fn format_date_string(&self) -> String {
-
-        if self.date.year() == Local::now().year() && self.date.month() == Local::now().month() && self.date.day() == Local::now().day() {
-            return "Today".to_string();
-        }
-
-        let day_of_week = match self.date.weekday() {
-            chrono::Weekday::Mon => "Monday",
-            chrono::Weekday::Tue => "Tuesday",
-            chrono::Weekday::Wed => "Wednesday",
-            chrono::Weekday::Thu => "Thursday",
-            chrono::Weekday::Fri => "Friday",
-            chrono::Weekday::Sat => "Saturday",
-            chrono::Weekday::Sun => "Sunday",
-        };
-    
-        let month = match self.date.month() {
-            1 => "Jan",
-            2 => "Feb",
-            3 => "Mar",
-            4 => "Apr",
-            5 => "May",
-            6 => "Jun",
-            7 => "Jul",
-            8 => "Aug",
-            9 => "Sep",
-            10 => "Oct",
-            11 => "Nov",
-            12 => "Dec",
-            _ => "",
-        };
-    
-        format!("{} {}, {}", day_of_week, self.date.day(), month)
-    }
-
 }
-
 impl eframe::App for InitView {
     fn update(mut self: &mut InitView, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         //load fonts
-        self.configure_fonts(ctx);
+        configure_fonts(&mut self,ctx);
 
         //background color
         let background_color = egui::containers::Frame {
@@ -101,12 +43,11 @@ impl eframe::App for InitView {
             render_date_backdrop(&mut self,ui);
         });
 
-
         //date layers
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
-            //load UI elements
+            //load UI elements 
             render_date(&mut self,ui);
         });
         egui::CentralPanel::default()

@@ -1,19 +1,17 @@
-use chrono::Duration;
+pub(crate) use chrono::Duration;
 use eframe::egui::{self};
 use crate::init_view::InitView;
-
+use crate::reformat_dates::format_date_string;
 
 pub fn render_date(view: &mut InitView, ui: &mut eframe::egui::Ui) {
-    let date = view.format_date_string();
+    let date = format_date_string(view);
     ui.vertical_centered(|ui|{
         ui.add_space(50.0);
         ui.horizontal(|ui|{
             ui.add_space(50.0);
             ui.colored_label(egui::Color32::from_rgb(255, 255, 255), date);
-
         });
     });
-
 }
 
 pub fn render_date_backdrop(view: &InitView, ui: &mut eframe::egui::Ui) {

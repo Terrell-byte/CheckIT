@@ -3,7 +3,8 @@ use init_view::InitView;
 
 mod init_view;
 mod date;
-
+mod font_loader;
+mod reformat_dates;
 
 fn main() {
     let options = eframe::NativeOptions {
