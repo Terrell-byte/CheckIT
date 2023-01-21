@@ -5,6 +5,7 @@ mod view;
 mod date;
 mod font_loader;
 mod reformat_dates;
+mod task;
 
 fn main() {
     let options = eframe::NativeOptions {
@@ -17,6 +18,5 @@ fn main() {
         "CheckIt",
         options,
         Box::new(|_cc| Box::new(View::new())),
-    )
-    
+    )   
 }
