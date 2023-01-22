@@ -64,6 +64,7 @@ impl eframe::App for View {
         .show(ctx, |ui| {
             //load UI elements
             render_task(&mut self, ui, ctx);
+            
         });
     }
 }
