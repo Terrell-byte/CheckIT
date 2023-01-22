@@ -22,7 +22,6 @@ pub fn configure_fonts(_view: &mut View,ctx: &egui::Context){
     
     ctx.set_fonts(fonts);
 
-
     let mut style = (*ctx.style()).clone();
     style.text_styles = [
         (Heading, FontId::new(22.0, Proportional)),

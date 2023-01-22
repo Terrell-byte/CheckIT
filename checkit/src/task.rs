@@ -16,8 +16,6 @@ pub fn render_task(view: &mut View, _ui: &mut eframe::egui::Ui, ctx: &egui::Cont
             //create a iterator for the tasks that is loaded from the datebase and then render them, and give them a 18.0 space between them
             //make sure that all of this is in a scroll area
             view.task_background.show_size(ui, egui::vec2(319.66, 59.11));
-            ui.add_space(18.0);
-
         });
     });
 
