@@ -2,7 +2,7 @@ use eframe::{egui::{self, FontDefinitions, FontData}, epaint::FontFamily};
 use egui::FontFamily::Proportional;
 use egui::FontId;
 use egui::TextStyle::*;
-use crate::view::View;
+use crate::init_view::View;
 
 pub fn configure_fonts(_view: &mut View,ctx: &egui::Context){
  

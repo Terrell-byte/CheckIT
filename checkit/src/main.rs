@@ -1,11 +1,12 @@
 use eframe::egui::{self};
-use view::View;
+use init_view::View;
 
-mod view;
-mod date;
+mod init_view;
+mod render_date;
 mod font_loader;
 mod reformat_dates;
 mod task;
+mod render_taskbar;
 
 fn main() {
     let options = eframe::NativeOptions {
@@ -13,7 +14,7 @@ fn main() {
         resizable: false,
         ..Default::default()
     };
-    let _view = view::View::new();
+    let _view = init_view::View::new();
         eframe::run_native(
         "CheckIt",
         options,

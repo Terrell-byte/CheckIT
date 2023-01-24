@@ -1,6 +1,6 @@
 pub(crate) use chrono::Duration;
 use eframe::egui::{self};
-use crate::view::View;
+use crate::init_view::View;
 use crate::reformat_dates::format_date_string;
 
 pub fn render_date(view: &mut View, ui: &mut eframe::egui::Ui) {

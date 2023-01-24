@@ -1,14 +1,19 @@
 use eframe::{egui::{self}};
 use egui_extras::RetainedImage;
 use chrono::{Local, DateTime};
-use crate::date::{render_date, render_date_backdrop, render_date_arrow};
+use crate::render_date::{render_date, render_date_backdrop, render_date_arrow};
 use crate::font_loader::configure_fonts;
 use crate::task::render_task;
+use crate::render_taskbar::render_taskbar;
 pub struct View {
     pub date_backdrop: RetainedImage,
     pub arrow_left_icon: RetainedImage,
     pub arrow_right_icon: RetainedImage,
     pub task_background: RetainedImage,
+    pub taskbar_background: RetainedImage,
+    pub home_icon: RetainedImage,
+    pub profile_icon: RetainedImage,
+    pub add_task: RetainedImage,
     pub date: DateTime<Local>,
 }
 
@@ -19,9 +24,25 @@ impl View {
         let arrow_left_icon = RetainedImage::from_image_bytes("assets/arrow_left.png", include_bytes!("assets/arrow_left.png")).unwrap();
         let arrow_right_icon = RetainedImage::from_image_bytes("assets/arrow_right.png", include_bytes!("assets/arrow_right.png")).unwrap();
         let task_background = RetainedImage::from_image_bytes("assets/task_background.png", include_bytes!("assets/task_background.png")).unwrap();
+        let taskbar_background = RetainedImage::from_image_bytes("assets/taskbar_background.png", include_bytes!("assets/taskbar_background.png")).unwrap();
+        let home_icon = RetainedImage::from_image_bytes("assets/home_icon.png", include_bytes!("assets/home_icon.png")).unwrap();
+        let add_task = RetainedImage::from_image_bytes("assets/add_task.png", include_bytes!("assets/add_task.png")).unwrap();
+        let profile_icon = RetainedImage::from_image_bytes("assets/profile_icon.png", include_bytes!("assets/profile_icon.png")).unwrap();
+
+        //load dates
         let date = Local::now();
         
-        Self { date_backdrop, date, arrow_left_icon, arrow_right_icon, task_background}
+        Self { 
+            date_backdrop,
+            date,
+            arrow_left_icon, 
+            arrow_right_icon,
+            task_background, 
+            taskbar_background, 
+            home_icon, 
+            profile_icon, 
+            add_task
+        }
     }
 }
 impl eframe::App for View {
@@ -59,12 +80,22 @@ impl eframe::App for View {
             //load UI elements
             render_date_arrow(&mut self, ui, ctx);
         });
+
+        //task layers
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
             //load UI elements
             render_task(&mut self, ui, ctx);
             
+        });
+
+        //taskbar layers
+        egui::CentralPanel::default()
+        .frame(frame)
+        .show(ctx, |ui| {
+            //load UI elements
+            render_taskbar(&mut self, ui, ctx);
         });
     }
 }
