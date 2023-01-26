@@ -4,7 +4,7 @@ use chrono::{Local, DateTime};
 use crate::render_date::{render_date, render_date_backdrop, render_date_arrow};
 use crate::font_loader::configure_fonts;
 use crate::task::render_task;
-use crate::render_taskbar::render_taskbar;
+use crate::render_taskbar::{render_taskbar, render_home};
 pub struct View {
     pub date_backdrop: RetainedImage,
     pub arrow_left_icon: RetainedImage,
@@ -63,7 +63,6 @@ impl eframe::App for View {
         egui::CentralPanel::default()
         .frame(background_color)
         .show(ctx, |ui| {
-            //load background
             render_date_backdrop(&mut self,ui);
         });
 
@@ -71,13 +70,12 @@ impl eframe::App for View {
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
-            //load UI elements 
             render_date(&mut self,ui);
         });
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
-            //load UI elements
+        
             render_date_arrow(&mut self, ui, ctx);
         });
 
@@ -85,7 +83,7 @@ impl eframe::App for View {
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
-            //load UI elements
+        
             render_task(&mut self, ui, ctx);
             
         });
@@ -93,9 +91,16 @@ impl eframe::App for View {
         //taskbar layers
         egui::CentralPanel::default()
         .frame(frame)
+        .show(ctx, |_ui| {
+            
+            render_taskbar(&mut self, ctx);
+        });
+        egui::CentralPanel::default()
+        .frame(frame)
         .show(ctx, |ui| {
-            //load UI elements
-            render_taskbar(&mut self, ui, ctx);
+            ui.horizontal(|ui|{
+                render_home(&mut self, ui, ctx)
+            });   
         });
     }
 }
