@@ -4,7 +4,7 @@ use chrono::{Local, DateTime};
 use crate::render_date::{render_date, render_date_backdrop, render_date_arrow};
 use crate::font_loader::configure_fonts;
 use crate::task::render_task;
-use crate::render_taskbar::{render_taskbar, render_home};
+use crate::render_taskbar::{render_taskbar, render_taskbar_elements};
 pub struct View {
     pub date_backdrop: RetainedImage,
     pub arrow_left_icon: RetainedImage,
@@ -91,15 +91,14 @@ impl eframe::App for View {
         //taskbar layers
         egui::CentralPanel::default()
         .frame(frame)
-        .show(ctx, |_ui| {
-            
-            render_taskbar(&mut self, ctx);
+        .show(ctx, |ui| {
+            render_taskbar(&mut self, ui, ctx);
         });
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
             ui.horizontal(|ui|{
-                render_home(&mut self, ui, ctx)
+                render_taskbar_elements(&mut self, ui, ctx)
             });   
         });
     }
