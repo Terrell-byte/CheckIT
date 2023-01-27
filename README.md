@@ -6,7 +6,7 @@ To get started using this application, you will need to have Rust and Docker ins
 
 1. Clone the repository
 
-> git clone https://github.com/<your-username>/CheckIT.git
+> git clone https://github.com/Terrell-byte/CheckIT.git
 
 2. Build the application
 
