@@ -14,7 +14,7 @@ To get started using this application, you will need to have Rust and Docker ins
 
 3. Start the database using Docker
 
-> Start the database using Docker
+> docker-compose up
 
 4. Run the application
 
