@@ -24,8 +24,8 @@ pub fn configure_fonts(_view: &mut View,ctx: &egui::Context){
 
     let mut style = (*ctx.style()).clone();
     style.text_styles = [
-        (Heading, FontId::new(22.0, Proportional)),
-        (Body, FontId::new(18.0, Proportional)),
+        (Heading, FontId::new(20.0, Proportional)),
+        (Body, FontId::new(16.0, Proportional)),
         (Monospace, FontId::new(14.0, Proportional)),
         (Button, FontId::new(14.0, Proportional)),
         (Small, FontId::new(10.0, Proportional)),

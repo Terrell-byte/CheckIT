@@ -9,7 +9,7 @@ pub fn render_date(view: &mut View, ui: &mut eframe::egui::Ui) {
         ui.add_space(50.0);
         ui.horizontal(|ui|{
             ui.add_space(50.0);
-            ui.colored_label(egui::Color32::from_rgb(255, 255, 255), date);
+            ui.label(egui::RichText::new(date).heading().color(egui::Color32::from_rgb(255, 255, 255)));
         });
     });
 }
