@@ -74,16 +74,14 @@ impl eframe::App for View {
         });
         egui::CentralPanel::default()
         .frame(frame)
-        .show(ctx, |ui| {
-        
+        .show(ctx, |ui| {    
             render_date_arrow(&mut self, ui, ctx);
         });
 
         //task layers
         egui::CentralPanel::default()
         .frame(frame)
-        .show(ctx, |ui| {
-        
+        .show(ctx, |ui| { 
             render_task(&mut self, ui, ctx);
             
         });
