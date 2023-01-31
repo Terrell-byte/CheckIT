@@ -3,13 +3,11 @@ services:
   db:
     build: .
     ports:
-      - "9010:9010"
+      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: mydatabase
+      MYSQL_DATABASE: checkitDB
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
-      - ./createtable:/docker-entrypoint-initdb.d
-
-volumes:
-  db_data:
-  
+      - ./initDB:/docker-entrypoint-initdb.d
