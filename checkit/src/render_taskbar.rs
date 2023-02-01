@@ -1,7 +1,7 @@
 use eframe::egui::{self};
 use crate::init_view::View;
 
-pub fn render_taskbar(view: &mut View, ui: &mut eframe::egui::Ui, ctx: &egui::Context) {
+pub fn render_taskbar(view: &mut View, ui: &mut eframe::egui::Ui) {
     ui.vertical_centered(|ui|{
         ui.add_space(612.78);
         view.taskbar_background.show_size(ui, egui::vec2(386.0, 72.38));

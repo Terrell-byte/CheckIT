@@ -17,6 +17,8 @@ pub struct View {
     pub date: DateTime<Local>,
 }
 
+
+
 impl View {
     pub fn new() -> Self {
         //load images
@@ -90,7 +92,7 @@ impl eframe::App for View {
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| {
-            render_taskbar(&mut self, ui, ctx);
+            render_taskbar(&mut self, ui);
         });
         egui::CentralPanel::default()
         .frame(frame)
