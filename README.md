@@ -16,6 +16,7 @@ cargo build
 
 3. Start the database using Docker
 ```
+cd docker
 docker-compose up
 ```
 
