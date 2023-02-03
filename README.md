@@ -22,6 +22,7 @@ docker-compose up
 
 4. Run the application
 ```
+cd..
 cargo run
 ```
 
