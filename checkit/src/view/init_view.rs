@@ -84,12 +84,9 @@ impl eframe::App for View {
         egui::CentralPanel::default()
         .frame(frame)
         .show(ctx, |ui| { 
-            ui.vertical_centered(|ui| {
-                ui.add_space(260.0);
-                render_task(&mut self, ui, ctx);
-                ui.add_space(18.0);
-                render_task(&mut self, ui, ctx);
-            });
+            render_task(&mut self, ui, ctx, frame);
+            ui.add_space(18.0);
+            render_task(&mut self, ui, ctx, frame);
         });
 
         //taskbar layers
