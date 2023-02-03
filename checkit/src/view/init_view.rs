@@ -1,10 +1,10 @@
 use eframe::{egui::{self}};
 use egui_extras::RetainedImage;
 use chrono::{Local, DateTime};
-use crate::render_date::{render_date, render_date_backdrop, render_date_arrow};
-use crate::font_loader::configure_fonts;
-use crate::task::render_task;
-use crate::render_taskbar::{render_taskbar, render_taskbar_elements};
+use crate::view::render_date::{render_date, render_date_backdrop, render_date_arrow};
+use crate::controller::font_loader::*;
+use crate::view::render_task::render_task;
+use crate::view::render_taskbar::{render_taskbar, render_taskbar_elements};
 pub struct View {
     pub date_backdrop: RetainedImage,
     pub arrow_left_icon: RetainedImage,
@@ -22,14 +22,14 @@ pub struct View {
 impl View {
     pub fn new() -> Self {
         //load images
-        let date_backdrop = RetainedImage::from_image_bytes("assets/date_backdrop.png", include_bytes!("assets/date_backdrop.png")).unwrap();
-        let arrow_left_icon = RetainedImage::from_image_bytes("assets/arrow_left.png", include_bytes!("assets/arrow_left.png")).unwrap();
-        let arrow_right_icon = RetainedImage::from_image_bytes("assets/arrow_right.png", include_bytes!("assets/arrow_right.png")).unwrap();
-        let task_background = RetainedImage::from_image_bytes("assets/task_background.png", include_bytes!("assets/task_background.png")).unwrap();
-        let taskbar_background = RetainedImage::from_image_bytes("assets/taskbar_background.png", include_bytes!("assets/taskbar_background.png")).unwrap();
-        let home_icon = RetainedImage::from_image_bytes("assets/home_icon.png", include_bytes!("assets/home_icon.png")).unwrap();
-        let add_task = RetainedImage::from_image_bytes("assets/add_task.png", include_bytes!("assets/add_task.png")).unwrap();
-        let profile_icon = RetainedImage::from_image_bytes("assets/profile_icon.png", include_bytes!("assets/profile_icon.png")).unwrap();
+        let date_backdrop = RetainedImage::from_image_bytes("assets/date_backdrop.png", include_bytes!("../assets/date_backdrop.png")).unwrap();
+        let arrow_left_icon = RetainedImage::from_image_bytes("assets/arrow_left.png", include_bytes!("../assets/arrow_left.png")).unwrap();
+        let arrow_right_icon = RetainedImage::from_image_bytes("assets/arrow_right.png", include_bytes!("../assets/arrow_right.png")).unwrap();
+        let task_background = RetainedImage::from_image_bytes("assets/task_background.png", include_bytes!("../assets/task_background.png")).unwrap();
+        let taskbar_background = RetainedImage::from_image_bytes("assets/taskbar_background.png", include_bytes!("../assets/taskbar_background.png")).unwrap();
+        let home_icon = RetainedImage::from_image_bytes("assets/home_icon.png", include_bytes!("../assets/home_icon.png")).unwrap();
+        let add_task = RetainedImage::from_image_bytes("assets/add_task.png", include_bytes!("../assets/add_task.png")).unwrap();
+        let profile_icon = RetainedImage::from_image_bytes("assets/profile_icon.png", include_bytes!("../assets/profile_icon.png")).unwrap();
 
         //load dates
         let date = Local::now();

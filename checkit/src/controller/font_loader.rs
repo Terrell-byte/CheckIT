@@ -2,7 +2,7 @@ use eframe::{egui::{self, FontDefinitions, FontData}, epaint::FontFamily};
 use egui::FontFamily::Proportional;
 use egui::FontId;
 use egui::TextStyle::*;
-use crate::init_view::View;
+use crate::view::init_view::*;
 
 pub fn configure_fonts(_view: &mut View,ctx: &egui::Context){
  
@@ -10,7 +10,7 @@ pub fn configure_fonts(_view: &mut View,ctx: &egui::Context){
 
     // Install my own font (maybe supporting non-latin characters):
     fonts.font_data.insert("JosefinSans".to_owned(),
-       FontData::from_static(include_bytes!("assets/fonts/JosefinSans-Regular.ttf"))); // .ttf and .otf supported
+       FontData::from_static(include_bytes!("../assets/fonts/JosefinSans-Regular.ttf"))); // .ttf and .otf supported
     
     // Put my font first (highest priority):
     fonts.families.get_mut(&FontFamily::Proportional).unwrap()

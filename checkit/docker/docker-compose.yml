@@ -10,4 +10,4 @@ services:
       MYSQL_PASSWORD: mypassword
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
-      - ./initDB.sql:/docker-entrypoint-initdb.d/initDB.sql
+      - ./sql/initDB.sql:/docker-entrypoint-initdb.d/initDB.sql

@@ -1,5 +1,5 @@
 use eframe::egui::{self};
-use crate::init_view::View;
+use crate::view::init_view::*;
 
 pub fn render_taskbar(view: &mut View, ui: &mut eframe::egui::Ui) {
     ui.vertical_centered(|ui|{

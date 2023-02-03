@@ -1,5 +1,5 @@
 use eframe::egui::{self};
-use crate::init_view::View;
+use crate::view::init_view::*;
 
 pub fn render_task(view: &mut View, _ui: &mut eframe::egui::Ui, ctx: &egui::Context) {
 

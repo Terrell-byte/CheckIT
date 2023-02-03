@@ -1,5 +1,5 @@
 use chrono::{Datelike, Local};
-use crate::{init_view::View};
+use crate::view::init_view::*;
 
 
 pub fn format_date_string(_view: &mut View) -> String {
