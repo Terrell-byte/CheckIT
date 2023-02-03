@@ -50,7 +50,7 @@ impl View {
 impl eframe::App for View {
     fn update(mut self: &mut View, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         //load fonts
-        configure_fonts(&mut self,ctx);
+        configure_fonts(ctx);
 
         //background color
         let background_color = egui::containers::Frame {
@@ -83,8 +83,8 @@ impl eframe::App for View {
         //task layers
         egui::CentralPanel::default()
         .frame(frame)
-        .show(ctx, |ui| { 
-            render_task(&mut self, ui, ctx);
+        .show(ctx, |_ui| { 
+            render_task(&mut self, ctx);
             
         });
 

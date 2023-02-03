@@ -1,7 +1,7 @@
 use eframe::egui::{self};
 use crate::view::init_view::*;
 
-pub fn render_task(view: &mut View, _ui: &mut eframe::egui::Ui, ctx: &egui::Context) {
+pub fn render_task(view: &mut View, ctx: &egui::Context) {
 
     let frame = egui::containers::Frame {
         fill: egui::Color32::from_rgba_premultiplied(0, 0, 0, 0),

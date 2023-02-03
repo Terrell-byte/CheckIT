@@ -2,9 +2,8 @@ use eframe::{egui::{self, FontDefinitions, FontData}, epaint::FontFamily};
 use egui::FontFamily::Proportional;
 use egui::FontId;
 use egui::TextStyle::*;
-use crate::view::init_view::*;
 
-pub fn configure_fonts(_view: &mut View,ctx: &egui::Context){
+pub fn configure_fonts(ctx: &egui::Context){
  
     let mut fonts = FontDefinitions::default();
 
