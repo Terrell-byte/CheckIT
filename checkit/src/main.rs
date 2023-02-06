@@ -3,7 +3,7 @@ use crate::view::init_view::*;
 
 //define crate modules
 pub mod model {
-
+    pub mod read_tasks;
 }
 pub mod view {
     pub mod init_view;
